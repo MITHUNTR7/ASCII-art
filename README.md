@@ -20,16 +20,6 @@ This is a Python project that allows you to convert an image into ASCII art. The
 - `ascii.py`: The main Python script containing the logic to convert an image into ASCII art.
 - `ascii-pineapple.jpg`: Example input image (can be replaced with any image of your choice).
 
-## Functionality
-
-The project includes the following main functions:
-
-- `get_pixel_matrix(img, height)`: Resizes the image to the specified height and returns a matrix representation of the image pixels.
-- `get_intensity_matrix(pixels_matrix, algo_name)`: Calculates the intensity values for each pixel in the matrix based on the specified algorithm.
-- `normalize_intensity_matrix(intensity_matrix)`: Normalizes the intensity values in the matrix to a range between 0 and 255.
-- `convert_to_ascii(intensity_matrix, ascii_chars)`: Converts the normalized intensity values into ASCII characters using a predefined character set.
-- `print_ascii_matrix(ascii_matrix)`: Prints the ASCII representation of the image.
-
 Feel free to explore and modify the code to experiment with different image processing algorithms, character sets, or additional functionalities.
 
 ## Example
