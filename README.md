@@ -26,7 +26,7 @@ Feel free to explore and modify the code to experiment with different image proc
 
 Below is an example of the ASCII art generated from the provided `ascii-pineapple.jpg` image:
 
-![ASCII Art](art.png "ASCII Art")
+![ASCII Art](art.PNG "ASCII Art")
 
 ## Acknowledgments
 
