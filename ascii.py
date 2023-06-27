@@ -5,7 +5,7 @@ asciiScale = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@
 img = Image.open('ascii-pineapple.jpg')
 
 def get_pixel_matrix(img):
-    img.thumbnail((img.height, 200))
+    img.thumbnail((img.width, 200))
     pixels = list(img.getdata())
     return [pixels[i:i+img.width] for i in range(0, len(pixels), img.width)]
 
