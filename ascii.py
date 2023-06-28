@@ -4,7 +4,7 @@ init(convert=True)
 
 
 asciiScale = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
-img = Image.open('ascii-pineapple.jpg')
+img = Image.open('./Images/bb.jpg')
 
 def get_pixel_matrix(img):
     img.thumbnail((img.width, 200))
@@ -50,12 +50,40 @@ def get_ascii_matrix(brightness_matrix):
 def print_ascii(ascii_matrix):
     for row in ascii_matrix:
         line = [c+c+c for c in row]
-        print(Fore.GREEN+"".join(line))
+        print(color+"".join(line))
 
+print("=======================")
+print("Welcome to ASCII Art Creator")
+print("=======================")
+
+
+print("Select anyone of the colors below (Select the number): ")
+print("1. RED")
+print("2. GREEN")
+print("3. BLUE")
+print("4. WHITE")
+print("5. YELLOW")
+print("6. MAGENTA")
+print("7. CYAN")
+
+color = input("")
+color_map = {
+    '1': Fore.RED,
+    '2': Fore.GREEN,
+    '3': Fore.BLUE,
+    '4': Fore.WHITE,
+    '5': Fore.YELLOW,
+    '6': Fore.MAGENTA,
+    '7': Fore.CYAN
+}
+
+if color in color_map:
+    color = color_map[color]
+else:
+    color = Fore.WHITE
 
 pixel_matrix = get_pixel_matrix(img)
 brightness_matrix = get_brightness_matrix(pixel_matrix)
 brightness_matrix = normalise_brightness_matrix(brightness_matrix)
 ascii_matrix = get_ascii_matrix(brightness_matrix)
 print_ascii(ascii_matrix)
-# print(Style.RESET_ALL)
