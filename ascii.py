@@ -4,20 +4,30 @@ init(convert=True)
 
 
 asciiScale = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
-img = Image.open('./Images/bb.jpg')
+img = Image.open('ascii-pineapple.jpg')
 
 def get_pixel_matrix(img):
     img.thumbnail((img.width, 200))
     pixels = list(img.getdata())
     return [pixels[i:i+img.width] for i in range(0, len(pixels), img.width)]
 
-def get_brightness_matrix(pixel_matrix):
+def get_brightness_matrix(pixel_matrix,mapping):
     brightness_matrix = []
     for i in range(len(pixel_matrix)):
         brightness_array = []
-        
         for j in range(len(pixel_matrix[i])):
-            brightness = (pixel_matrix[i][j][0] + pixel_matrix[i][j][1] + pixel_matrix[i][j][2]) / 3
+            if mapping == "average":
+                brightness = (pixel_matrix[i][j][0] + pixel_matrix[i][j][1] + pixel_matrix[i][j][2]) / 3
+            elif mapping == "lightness":
+                brightness = (max(pixel_matrix[i][j][0], pixel_matrix[i][j][1], pixel_matrix[i][j][2]) + 
+                                min(pixel_matrix[i][j][0], pixel_matrix[i][j][1], pixel_matrix[i][j][2]))/2
+            elif mapping == "luminosity":
+                brightness = 0.21 *  pixel_matrix[i][j][0] + 0.72 * pixel_matrix[i][j][1] + 0.07 * pixel_matrix[i][j][2]
+            
+            else:
+                raise Exception("Enter a valid brightness filter")
+                
+                
             brightness_array.append(brightness)
             
         brightness_matrix.append(brightness_array)
@@ -57,7 +67,7 @@ print("Welcome to ASCII Art Creator")
 print("=======================")
 
 
-print("Select anyone of the colors below (Select the number): ")
+print("Available colors : ")
 print("1. RED")
 print("2. GREEN")
 print("3. BLUE")
@@ -66,7 +76,14 @@ print("5. YELLOW")
 print("6. MAGENTA")
 print("7. CYAN")
 
-color = input("")
+color = input("Select anyone of the colors above (type in the number): ")
+print("Available brightness filters : ")
+print("1. Average")
+print("2. Lightness")
+print("3. Luminosity")
+
+filter = input("Select a brightness filter (type in the number): ")
+
 color_map = {
     '1': Fore.RED,
     '2': Fore.GREEN,
@@ -76,14 +93,18 @@ color_map = {
     '6': Fore.MAGENTA,
     '7': Fore.CYAN
 }
-
+filter_map ={
+    '1': "average",
+    '2': "lightness",
+    '3': "luminosity"   
+}
 if color in color_map:
     color = color_map[color]
 else:
     color = Fore.WHITE
 
 pixel_matrix = get_pixel_matrix(img)
-brightness_matrix = get_brightness_matrix(pixel_matrix)
+brightness_matrix = get_brightness_matrix(pixel_matrix,filter_map[filter])
 brightness_matrix = normalise_brightness_matrix(brightness_matrix)
 ascii_matrix = get_ascii_matrix(brightness_matrix)
 print_ascii(ascii_matrix)
