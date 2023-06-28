@@ -23,11 +23,7 @@ def get_brightness_matrix(pixel_matrix,mapping):
                                 min(pixel_matrix[i][j][0], pixel_matrix[i][j][1], pixel_matrix[i][j][2]))/2
             elif mapping == "luminosity":
                 brightness = 0.21 *  pixel_matrix[i][j][0] + 0.72 * pixel_matrix[i][j][1] + 0.07 * pixel_matrix[i][j][2]
-            
-            else:
-                raise Exception("Enter a valid brightness filter")
-                
-                
+             
             brightness_array.append(brightness)
             
         brightness_matrix.append(brightness_array)
@@ -103,8 +99,16 @@ if color in color_map:
 else:
     color = Fore.WHITE
 
+if filter in filter_map:
+    filter = filter_map[filter]
+else:
+    print("Type in a valid filter next time")
+    print("Generating using default filter...")
+    filter = filter_map["1"]
+
+
 pixel_matrix = get_pixel_matrix(img)
-brightness_matrix = get_brightness_matrix(pixel_matrix,filter_map[filter])
+brightness_matrix = get_brightness_matrix(pixel_matrix,filter)
 brightness_matrix = normalise_brightness_matrix(brightness_matrix)
 ascii_matrix = get_ascii_matrix(brightness_matrix)
 print_ascii(ascii_matrix)
