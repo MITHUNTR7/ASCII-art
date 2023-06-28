@@ -6,11 +6,12 @@ This is a Python project that allows you to convert an image into ASCII art. The
 
 - Python 3.x
 - PIL (Python Imaging Library)
+- Colorama (colored terminal text)
 
 ## Usage
 
 1. Clone the repository or download the source code.
-2. Install the required dependencies (`PIL` library).
+2. Install the required dependencies (`PIL` library, `colorama` library).
 3. Place the image you want to convert into ASCII art in the same directory as the Python script.
 4. Modify the Python script to specify the image file name.
 5. Run the Python script.
