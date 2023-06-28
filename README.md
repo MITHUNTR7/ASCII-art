@@ -39,6 +39,9 @@ Below is an example of the ASCII art generated from the provided `ascii-pineappl
 
 ![ASCII Art](art.PNG "ASCII Art")
 
+Below is an example of the same ASCII art generated using colorama library:
+![ASCII Art](matrix_green.PNG "ASCII Art")
+
 ## Acknowledgments
 
 The project is inspired by the concept of converting images into ASCII art and utilizes the Python Imaging Library (PIL) for image processing.
