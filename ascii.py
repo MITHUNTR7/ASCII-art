@@ -1,4 +1,6 @@
 from PIL import Image
+from colorama import init, Fore, Style
+init(convert=True)
 
 
 asciiScale = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
@@ -48,7 +50,7 @@ def get_ascii_matrix(brightness_matrix):
 def print_ascii(ascii_matrix):
     for row in ascii_matrix:
         line = [c+c+c for c in row]
-        print("".join(line))
+        print(Fore.GREEN+"".join(line))
 
 
 pixel_matrix = get_pixel_matrix(img)
@@ -56,3 +58,4 @@ brightness_matrix = get_brightness_matrix(pixel_matrix)
 brightness_matrix = normalise_brightness_matrix(brightness_matrix)
 ascii_matrix = get_ascii_matrix(brightness_matrix)
 print_ascii(ascii_matrix)
+# print(Style.RESET_ALL)
