@@ -4,7 +4,7 @@ init(convert=True)
 
 
 asciiScale = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
-img = Image.open('ascii-pineapple.jpg')
+img = Image.open('Images\zebra.jpg')
 
 def get_pixel_matrix(img):
     img.thumbnail((img.width, 200))
@@ -42,6 +42,17 @@ def normalise_brightness_matrix(brightness_matrix):
         
     return normalised_matrix
 
+def invert_matrix(brightness_matrix):
+    invert_brightness_matrix = []
+    for row in brightness_matrix:
+        invert_brightness_row = []
+        for pix_b in row:
+            pix_b = 255 - pix_b
+            invert_brightness_row.append(pix_b)
+        invert_brightness_matrix.append(invert_brightness_row)
+    return invert_brightness_matrix
+
+
 def get_ascii_matrix(brightness_matrix):
     ascii_matrix = []
     for i in range(len(brightness_matrix)):
@@ -78,7 +89,12 @@ print("1. Average")
 print("2. Lightness")
 print("3. Luminosity")
 
+
+
 filter = input("Select a brightness filter (type in the number): ")
+
+
+
 
 color_map = {
     '1': Fore.RED,
@@ -110,5 +126,9 @@ else:
 pixel_matrix = get_pixel_matrix(img)
 brightness_matrix = get_brightness_matrix(pixel_matrix,filter)
 brightness_matrix = normalise_brightness_matrix(brightness_matrix)
+
+invert_brightness_matrix = invert_matrix(brightness_matrix)
+
+
 ascii_matrix = get_ascii_matrix(brightness_matrix)
 print_ascii(ascii_matrix)
