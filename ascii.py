@@ -93,11 +93,17 @@ print("3. Luminosity")
 
 filter = input("Select a brightness filter (type in the number): ")
 
+invert_filter = input("Do you want to invert the brightness? (Y/N) : ")
 
-
+while invert_filter not in ["Y", "N"]:
+    print("Invalid input. Please enter Y/N")
+    invert_filter = input("Do you want to invert the brightness? (Y/N) : ")
+    
+        
 
 color_map = {
     '1': Fore.RED,
+    
     '2': Fore.GREEN,
     '3': Fore.BLUE,
     '4': Fore.WHITE,
@@ -127,8 +133,12 @@ pixel_matrix = get_pixel_matrix(img)
 brightness_matrix = get_brightness_matrix(pixel_matrix,filter)
 brightness_matrix = normalise_brightness_matrix(brightness_matrix)
 
-invert_brightness_matrix = invert_matrix(brightness_matrix)
+if invert_filter == "Y":
+    invert_brightness_matrix = invert_matrix(brightness_matrix)
+    ascii_matrix = get_ascii_matrix(invert_brightness_matrix)
+    
+else:
+    ascii_matrix = get_ascii_matrix(brightness_matrix)
+       
 
-
-ascii_matrix = get_ascii_matrix(brightness_matrix)
 print_ascii(ascii_matrix)
