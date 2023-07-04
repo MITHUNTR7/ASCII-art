@@ -19,7 +19,7 @@ This is a Python project that allows you to convert an image into ASCII art. The
 ## Project Structure
 
 - `ascii.py`: The main Python script containing the logic to convert an image into ASCII art.
-- `ascii-pineapple.jpg`: Example input image (can be replaced with any image of your choice).\
+- `ascii-pineapple.jpg`: Example input image (can be replaced with any image of your choice).
 
 Feel free to explore and modify the code to experiment with different image processing algorithms, character sets, or additional functionalities.
 
